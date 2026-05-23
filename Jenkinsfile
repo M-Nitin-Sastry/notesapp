@@ -1,17 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        GMAIL = credentials('gmail-creds')
-    }
-
     stages {
-
-        stage('Clone') {
-            steps {
-                git 'https://github.com/M-Nitin-Sastry/notesapp.git'
-            }
-        }
 
         stage('Build Maven') {
             steps {
@@ -27,6 +17,7 @@ pipeline {
     }
 
     post {
+
         success {
             mail to: 'nitinsastrym@gmail.com',
             subject: 'Jenkins Build SUCCESS',
